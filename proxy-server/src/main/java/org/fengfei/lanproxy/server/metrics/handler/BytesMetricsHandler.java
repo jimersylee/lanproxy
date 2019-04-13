@@ -1,13 +1,12 @@
 package org.fengfei.lanproxy.server.metrics.handler;
 
-import java.net.InetSocketAddress;
-
-import org.fengfei.lanproxy.server.metrics.MetricsCollector;
-
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelDuplexHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelPromise;
+import org.fengfei.lanproxy.server.metrics.MetricsCollector;
+
+import java.net.InetSocketAddress;
 
 public class BytesMetricsHandler extends ChannelDuplexHandler {
 

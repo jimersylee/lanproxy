@@ -1,17 +1,5 @@
 package org.fengfei.lanproxy.client;
 
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentLinkedQueue;
-
-import org.fengfei.lanproxy.client.listener.ProxyChannelBorrowListener;
-import org.fengfei.lanproxy.common.Config;
-import org.fengfei.lanproxy.protocol.Constants;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.Channel;
@@ -19,6 +7,17 @@ import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelOption;
 import io.netty.util.AttributeKey;
+import org.fengfei.lanproxy.client.listener.ProxyChannelBorrowListener;
+import org.fengfei.lanproxy.common.Config;
+import org.fengfei.lanproxy.protocol.Constants;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
  * 代理客户端与后端真实服务器连接管理

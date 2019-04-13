@@ -1,10 +1,9 @@
 package org.fengfei.lanproxy.server.config.web.routes;
 
-import java.nio.charset.Charset;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-
+import com.google.gson.reflect.TypeToken;
+import io.netty.channel.Channel;
+import io.netty.handler.codec.http.FullHttpRequest;
+import io.netty.handler.codec.http.HttpHeaders;
 import org.fengfei.lanproxy.common.JsonUtil;
 import org.fengfei.lanproxy.server.ProxyChannelManager;
 import org.fengfei.lanproxy.server.config.ProxyConfig;
@@ -18,11 +17,10 @@ import org.fengfei.lanproxy.server.metrics.MetricsCollector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.gson.reflect.TypeToken;
-
-import io.netty.channel.Channel;
-import io.netty.handler.codec.http.FullHttpRequest;
-import io.netty.handler.codec.http.HttpHeaders;
+import java.nio.charset.Charset;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 /**
  * 接口实现

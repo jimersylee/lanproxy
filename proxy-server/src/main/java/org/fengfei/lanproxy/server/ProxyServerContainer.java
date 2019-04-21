@@ -90,6 +90,13 @@ public class ProxyServerContainer implements Container, ConfigChangedListener {
 
     }
 
+    /**
+     * 初始化SSL协议
+     *
+     * @param host:ip
+     * @param port:端口
+     * @param sslContext:ssl上下文
+     */
     private void initializeSSLTCPTransport(String host, int port, final SSLContext sslContext) {
         ServerBootstrap b = new ServerBootstrap();
         b.group(serverBossGroup, serverWorkerGroup).channel(NioServerSocketChannel.class).childHandler(new ChannelInitializer<SocketChannel>() {
@@ -120,6 +127,9 @@ public class ProxyServerContainer implements Container, ConfigChangedListener {
         }
     }
 
+    /**
+     * 启动用户端口
+     */
     private void startUserPort() {
         ServerBootstrap bootstrap = new ServerBootstrap();
         bootstrap.group(serverBossGroup, serverWorkerGroup).channel(NioServerSocketChannel.class).childHandler(new ChannelInitializer<SocketChannel>() {
@@ -158,6 +168,13 @@ public class ProxyServerContainer implements Container, ConfigChangedListener {
         serverWorkerGroup.shutdownGracefully();
     }
 
+    /**
+     * 创建ssl处理器
+     *
+     * @param sslContext:ssl上下文
+     * @param needsClientAuth:是否需要客户端认证
+     * @return ChannelHandler:通道处理器
+     */
     private ChannelHandler createSslHandler(SSLContext sslContext, boolean needsClientAuth) {
         SSLEngine sslEngine = sslContext.createSSLEngine();
         sslEngine.setUseClientMode(false);
@@ -168,8 +185,12 @@ public class ProxyServerContainer implements Container, ConfigChangedListener {
         return new SslHandler(sslEngine);
     }
 
+    /**
+     * 启动函数
+     * @param args
+     */
     public static void main(String[] args) {
-        ContainerHelper.start(Arrays.asList(new Container[] { new ProxyServerContainer(), new WebConfigContainer() }));
+        ContainerHelper.start(Arrays.asList(new ProxyServerContainer(), new WebConfigContainer()));
     }
 
 }

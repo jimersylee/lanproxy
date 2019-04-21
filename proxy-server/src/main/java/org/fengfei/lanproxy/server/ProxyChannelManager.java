@@ -17,7 +17,6 @@ import java.util.concurrent.ConcurrentHashMap;
  * 代理服务连接管理（代理客户端连接+用户请求连接）
  *
  * @author fengfei
- *
  */
 public class ProxyChannelManager {
 
@@ -106,7 +105,7 @@ public class ProxyChannelManager {
             /**
              * 检测连接配置是否与当前配置一致，不一致则关闭
              *
-             * @param proxyChannel
+             * @param proxyChannel:代理通道
              */
             private void checkAndClearUserChannels(Channel proxyChannel) {
                 Map<String, Channel> userChannels = getUserChannels(proxyChannel);
@@ -133,8 +132,8 @@ public class ProxyChannelManager {
     /**
      * 增加代理服务器端口与代理控制客户端连接的映射关系
      *
-     * @param ports
-     * @param channel
+     * @param ports:端口
+     * @param channel:通道
      */
     public static void addCmdChannel(List<Integer> ports, String clientKey, Channel channel) {
 
@@ -228,9 +227,9 @@ public class ProxyChannelManager {
     /**
      * 删除用户连接与代理客户端连接关系
      *
-     * @param proxyChannel
-     * @param userId
-     * @return
+     * @param cmdChannel:通道
+     * @param userId:用户id
+     * @return:
      */
     public static Channel removeUserChannelFromCmdChannel(Channel cmdChannel, String userId) {
         if (cmdChannel.attr(USER_CHANNELS).get() == null) {
@@ -245,9 +244,9 @@ public class ProxyChannelManager {
     /**
      * 根据代理客户端连接与用户编号获取用户连接
      *
-     * @param proxyChannel
-     * @param userId
-     * @return
+     * @param cmdChannel:通道
+     * @param userId:用户id
+     * @return Channel:通道
      */
     public static Channel getUserChannel(Channel cmdChannel, String userId) {
         return cmdChannel.attr(USER_CHANNELS).get().get(userId);
@@ -256,8 +255,8 @@ public class ProxyChannelManager {
     /**
      * 获取用户编号
      *
-     * @param userChannel
-     * @return
+     * @param userChannel:用户通道
+     * @return String:用户id
      */
     public static String getUserChannelUserId(Channel userChannel) {
         return userChannel.attr(Constants.USER_ID).get();
@@ -266,8 +265,8 @@ public class ProxyChannelManager {
     /**
      * 获取用户请求的内网IP端口信息
      *
-     * @param userChannel
-     * @return
+     * @param userChannel:用户通道
+     * @return String:ip端口信息
      */
     public static String getUserChannelRequestLanInfo(Channel userChannel) {
         return userChannel.attr(REQUEST_LAN_INFO).get();
@@ -276,8 +275,8 @@ public class ProxyChannelManager {
     /**
      * 获取代理控制客户端连接绑定的所有用户连接
      *
-     * @param cmdChannel
-     * @return
+     * @param cmdChannel:通道
+     * @return Map<String, Channel>:用户,连接
      */
     public static Map<String, Channel> getUserChannels(Channel cmdChannel) {
         return cmdChannel.attr(USER_CHANNELS).get();

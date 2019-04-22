@@ -8,6 +8,9 @@ import org.fengfei.lanproxy.server.metrics.MetricsCollector;
 
 import java.net.InetSocketAddress;
 
+/**
+ * 字节指标处理器
+ */
 public class BytesMetricsHandler extends ChannelDuplexHandler {
 
     @Override
